@@ -2,12 +2,12 @@
 import { useEffect, useState } from 'react';
 import { MoonIcon, SunIcon } from '@heroicons/react/20/solid';
 export default function Header() {
-  const userPreference =
-    typeof window !== undefined &&
-    (window.localStorage.getItem('theme') === 'dark' ||
-      (!('theme' in window.localStorage) &&
-        window.matchMedia('(prefers-color-scheme: dark)').matches));
-  const [isDarkMode, setIsDarkMode] = useState(userPreference);
+  // const userPreference =
+  //   typeof window !== undefined &&
+  //   (window.localStorage.getItem('theme') === 'dark' ||
+  //     (!('theme' in window.localStorage) &&
+  //       window.matchMedia('(prefers-color-scheme: dark)').matches));
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
     if (isDarkMode) {
