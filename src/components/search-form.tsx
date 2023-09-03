@@ -72,6 +72,7 @@ export default function SearchForm() {
             id="region"
             aria-label="region"
             className="dark:bg-slate-800"
+            value={searchParams.get('region') ?? 'default'}
             onChange={(e) => {
               router.push(
                 pathname + '?' + createQueryString('region', e.target.value)
@@ -79,15 +80,11 @@ export default function SearchForm() {
               setCountryName('');
             }}
           >
-            <option disabled selected hidden>
+            <option value="default" disabled hidden>
               Filter by Region
             </option>
             {regions.map((region) => (
-              <option
-                selected={region.id === searchParams.get('region')}
-                key={region.id}
-                value={region.id}
-              >
+              <option key={region.id} value={region.id}>
                 {region.value}
               </option>
             ))}

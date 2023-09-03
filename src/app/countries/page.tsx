@@ -35,7 +35,7 @@ export default async function CountriesPage({
                 width={400}
                 alt={`flag of ${country.name.official}`}
               />
-              <div className="p-4">
+              <div className="p-4 ">
                 <h2 className="text-lg font-semibold">
                   {country.name.official}
                 </h2>

@@ -3,10 +3,11 @@ import { useEffect, useState } from 'react';
 import { MoonIcon, SunIcon } from '@heroicons/react/20/solid';
 export default function Header() {
   // const userPreference =
-  //   typeof window !== undefined &&
-  //   (window.localStorage.getItem('theme') === 'dark' ||
-  //     (!('theme' in window.localStorage) &&
-  //       window.matchMedia('(prefers-color-scheme: dark)').matches));
+  //   typeof window !== undefined
+  //     ? window?.localStorage.getItem('theme') === 'dark' ||
+  //       (!('theme' in window?.localStorage) &&
+  //         window?.matchMedia('(prefers-color-scheme: dark)').matches)
+  //     : false;
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
@@ -18,7 +19,7 @@ export default function Header() {
   }, [isDarkMode]);
 
   const toggleTheme = () => {
-    localStorage.setItem('theme', isDarkMode ? 'light' : 'dark');
+    // localStorage.setItem('theme', isDarkMode ? 'light' : 'dark');
     setIsDarkMode((prevState) => !prevState);
   };
 

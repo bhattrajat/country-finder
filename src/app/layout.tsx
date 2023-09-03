@@ -22,7 +22,7 @@ export default function RootLayout({
         className={`${inter.className} dark:bg-slate-950 transition-colors duration-1000 dark:text-white`}
       >
         <Header />
-        {children}
+        <main>{children}</main>
       </body>
     </html>
   );
