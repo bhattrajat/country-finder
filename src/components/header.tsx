@@ -1,6 +1,4 @@
 'use client';
-import { useEffect, useState } from 'react';
-import { MoonIcon, SunIcon } from '@heroicons/react/20/solid';
 import ThemeSwitcher from './theme-switcher';
 export default function Header() {
   return (

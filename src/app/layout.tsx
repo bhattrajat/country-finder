@@ -1,8 +1,8 @@
-import SearchForm from '@/components/search-form';
 import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import Header from '@/components/header';
+import { Providers } from '@/providers/theme-provider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -17,12 +17,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${inter.className} dark:bg-slate-950 transition-colors duration-1000 dark:text-white`}
       >
-        <Header />
-        <main>{children}</main>
+        <Providers>
+          <Header />
+          <main>{children}</main>
+        </Providers>
       </body>
     </html>
   );

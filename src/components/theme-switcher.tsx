@@ -1,44 +1,35 @@
 import { MoonIcon, SunIcon } from '@heroicons/react/20/solid';
+import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
+import { Skeleton } from './ui/skeleton';
 
-function getTheme() {
-  const userPreference =
-    typeof window !== 'undefined'
-      ? window?.localStorage.getItem('theme') === 'dark' ||
-        (!('theme' in window?.localStorage) &&
-          window?.matchMedia('(prefers-color-scheme: dark)').matches)
-      : false;
-  return userPreference;
-}
 export default function ThemeSwitcher() {
-  const [isDarkMode, setIsDarkMode] = useState(() => getTheme());
+  const [mounted, setMounted] = useState(false);
+  const { resolvedTheme, setTheme } = useTheme();
 
+  // useEffect only runs on the client, so now we can safely show the UI
   useEffect(() => {
-    if (isDarkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, [isDarkMode]);
+    setMounted(true);
+  }, []);
 
-  const toggleTheme = () => {
-    localStorage.setItem('theme', isDarkMode ? 'light' : 'dark');
-    setIsDarkMode((prevState) => !prevState);
-  };
+  if (!mounted) {
+    return <Skeleton className="h-8 w-24 dark:bg-slate-600" />;
+  }
 
   return (
     <button
       type="button"
       className="inline-flex items-center gap-2 text-sm"
-      onClick={toggleTheme}
+      onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
+      suppressHydrationWarning
     >
-      {isDarkMode && (
+      {resolvedTheme === 'dark' && (
         <>
           <MoonIcon className="h-5" />
           <span>Dark Mode</span>
         </>
       )}
-      {!isDarkMode && (
+      {resolvedTheme === 'light' && (
         <>
           <SunIcon className="h-5 w-5" />
           <span>Light Mode</span>
