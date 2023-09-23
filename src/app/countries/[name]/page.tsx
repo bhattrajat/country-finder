@@ -68,7 +68,7 @@ export default async function CountryDetailsPage({
           {borderCountries && (
             <div>
               <h3 className="text-lg font-semibold">Border Countries:</h3>
-              <ul className="grid grid-cols-3 gap-2">
+              <ul className="grid grid-cols-2 md:grid-cols-3 gap-2">
                 {borderCountries.map((country) => (
                   <li
                     className="px-4 py-2 text-center border-2 rounded border-slate-300 shadow"
